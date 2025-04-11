@@ -1,1 +1,68 @@
-.venv
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Pytest cache
+.pytest_cache/
+
+# MyPy cache
+.mypy_cache/
+
+# Coverage reports
+htmlcov/
+*.cover
+*.py,cover
+.coverage
+.coverage.*
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Environment variables
+.env
+.env.*
+
+# MacOS system files
+.DS_Store
+
+# VSCode files
+.vscode/
+*.code-workspace
+
+# IDE specific
+.idea/
+
+# Generated files
+*.out
+*.map
+*.pyo
+
+# Python-specific caches and dumps
+*.pkl
+*.pickle
+*.dmp
+
+# Custom ignore
+data
