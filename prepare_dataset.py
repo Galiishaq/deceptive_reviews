@@ -5,6 +5,7 @@ import tempfile
 import requests
 import argparse
 from pathlib import Path
+import uuid
 
 
 def download_zipfile(url, save_directory, filename="downloaded_file.zip"):
@@ -56,14 +57,21 @@ def split_and_organize_data(source_dir, output_dir, train_ratio=0.8):
 
     for label in ["deceptive", "truthful"]:
         files = list(Path(source_dir).rglob(f"{label}*/*/*.txt"))
+        print(f"found {len(files)} for {label}")
         random.shuffle(files)
         train_cutoff = int(len(files) * train_ratio)
 
         for subset, subset_files in zip(["train", "eval"], [files[:train_cutoff], files[train_cutoff:]]):
             subset_dir = output_dir / subset / label
             subset_dir.mkdir(parents=True, exist_ok=True)
+            # for file in subset_files:
+            #     shutil.copy(file, subset_dir / file.name) **(some names are the same so they get replaced)**
             for file in subset_files:
-                shutil.copy(file, subset_dir / file.name)
+                dest_file = subset_dir / file.name
+                # condition to handle name collisions
+                if dest_file.exists():
+                    dest_file = subset_dir / f"{file.stem}_{uuid.uuid4().hex}{file.suffix}"
+                shutil.copy(file, dest_file)
 
     print(f"Data split and organized in '{output_dir}'.")
 
