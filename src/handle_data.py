@@ -34,9 +34,3 @@ def load_reviews(data_dir, eval=False, load_all=False):
     return pd.DataFrame({"review": reviews, "label": labels})
 
 
-def prepare_dataset(df):
-    df["cleaned_reviews"] = df["review"].apply(clean_text)
-    X = df["cleaned_reviews"]
-    y = df["label"].map({"truthful": 0, "deceptive": 1})
-    
-    return X, y
