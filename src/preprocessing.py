@@ -27,4 +27,4 @@ def vectorize_data(df, max_feats, ngram=1):
     vectorizer = TfidfVectorizer(max_features=max_feats, ngram_range=(1, ngram))
     X, y = prepare_dataset(df)
     X_vec = vectorizer.fit_transform(X)
-    return X_vec, y
+    return X_vec, y, vectorizer
